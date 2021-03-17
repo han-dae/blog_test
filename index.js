@@ -17,7 +17,7 @@ mongoose.connect(MONGO_URI, {
 .catch((err) => {console.log(err);
 })
 
-
+app.use("/api/user",require("./routes/api/user"));
 
 app.listen(PORT,()=>{
     console.log(`Server started on ${PORT} port`);

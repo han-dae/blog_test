@@ -11,11 +11,7 @@ function Footer() {
               &copy;
               <a
                 href="http://github.com/han-dae"
-                className={
-                  "dark"
-                    ? "text-decoration-none text-white"
-                    : "text-decoration-none text-dark"
-                }
+                className="text-decoration-none text-white"
                 target="_blank"
                 rel="noreferrer"
               >

@@ -18,10 +18,11 @@ import Fade from "react-reveal/Fade";
 function Router() {
   const [theme, themeToggler, mountedComponent] = useDarkMode();
   const themeMode = theme === "light" ? lightTheme : darkTheme;
+
   let HideHeader =
     window.location.pathname === "/register" ? null : window.location
         .pathname === "/findpassword" ? null : (
-      <Header />
+      <Header theme={theme} />
     );
   if (!mountedComponent) return <div />;
 
@@ -34,7 +35,7 @@ function Router() {
       </Fade>
       <Container>
         <Switch>
-          <Route path="/" exact component={Main} />
+          <Route path="/" exact render={() => <Main theme={theme} />} />
           <Route path="/register" exact component={Register} />
         </Switch>
       </Container>

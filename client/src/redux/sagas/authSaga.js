@@ -105,11 +105,47 @@ function* watchregisterUser() {
   yield takeEvery(REGISTER_REQUEST, registerUser);
 }
 
+//User Loading
+const userLoadingApi = (token) => {
+  const config = {
+    headers: {
+      "Content - Type": "application/json",
+    },
+  };
+
+  if (token) {
+    config.headers["x-auth-token"] = token;
+  }
+
+  return axios.get("api/auth/user", config);
+};
+
+function* userLoading(action) {
+  try {
+    const result = yield call(userLoadingAPI, action.payload);
+
+    yield put({
+      type: USER_LOADING_SUCESS,
+      payload: result.data,
+    });
+  } catch (e) {
+    yield put({
+      type: USER_LOADING_FAILURE,
+      payload: e.response,
+    });
+  }
+}
+
+function* watchuserLoading() {
+  yield takeEvery(USER_LOADING_REQUEST, userLoading);
+}
+
 export default function* authSaga() {
   yield all([
     fork(watchLoginUser),
     fork(watchlogout),
     fork(watchclearError),
     fork(watchregisterUser),
+    fork(watchuserLoading),
   ]);
 }

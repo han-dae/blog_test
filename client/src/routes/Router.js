@@ -15,6 +15,9 @@ import { useDarkMode } from "../assets/useDarkMode";
 import Toggle from "../assets/Toggle";
 import Fade from "react-reveal/Fade";
 
+import PostList from "./normalRoute/PostList";
+
+import PostWrite from "./normalRoute/PostWrite";
 function Router() {
   const [theme, themeToggler, mountedComponent] = useDarkMode();
   const themeMode = theme === "light" ? lightTheme : darkTheme;
@@ -35,6 +38,12 @@ function Router() {
       </Fade>
       <Container>
         <Switch>
+          <Route
+            path="/postlist"
+            exact
+            render={() => <PostList theme={theme} />}
+          />
+          <Route path="/postwrite" exact component={PostWrite} />
           <Route path="/" exact render={() => <Main theme={theme} />} />
           <Route path="/register" exact component={Register} />
         </Switch>

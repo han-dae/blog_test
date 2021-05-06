@@ -48,6 +48,7 @@ const authReducer = (state = initialState, action) => {
         isLoading: false,
         userId: action.payload.user.id,
         userRole: action.payload.user.role,
+        userName: action.payload.user.name,
         errorMsg: "",
       };
     case REGISTER_FAILURE:

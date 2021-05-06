@@ -52,7 +52,7 @@ router.post("/register", (req, res) => {
             JWT_SECRET,
             { expiresIn: 3600 },
             (err, token) => {
-              if (err) return res.status(400).json({ error });
+              if (err) return res.status(400).json({ err });
               res.json({
                 token,
                 user: {

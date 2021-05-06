@@ -1,6 +1,9 @@
 import axios from "axios";
 import { all, call, put, takeEvery, fork } from "redux-saga/effects";
 import {
+  USER_LOADING_FAILURE,
+  USER_LOADING_SUCCESS,
+  USER_LOADING_REQUEST,
   CLEAR_ERROR_FAILURE,
   CLEAR_ERROR_REQUEST,
   CLEAR_ERROR_SUCCESS,
@@ -88,7 +91,7 @@ const registerUserAPI = (registerData) => {
 function* registerUser(action) {
   try {
     const result = yield call(registerUserAPI, action.payload);
-
+    console.log(result);
     yield put({
       type: REGISTER_SUCCESS,
       payload: result.data,
@@ -122,10 +125,10 @@ const userLoadingApi = (token) => {
 
 function* userLoading(action) {
   try {
-    const result = yield call(userLoadingAPI, action.payload);
+    const result = yield call(userLoadingApi, action.payload);
 
     yield put({
-      type: USER_LOADING_SUCESS,
+      type: USER_LOADING_SUCCESS,
       payload: result.data,
     });
   } catch (e) {
